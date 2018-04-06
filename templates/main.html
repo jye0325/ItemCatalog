@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial scale=1.0">
+	<link rel="stylesheet" type=text/css href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+	<header class="header">
+		<div class="title">
+			<a href="{{url_for('mainMenu')}}"><h1>Item-Catalog App</h1></a>
+		</div>
+	</header>
+	<div class="container">
+		<div class="grid-container">
+			<div class="menu">
+                {% for category in categories %}
+                <p>
+                    <a href="{{url_for('categoryItems', category_id = category.id)}}"> <h4>{{category.name}}</h4></a>
+                    <br>
+                    {% if loggedIn %}
+                    <a href="{{url_for('editCategory', category_id = category.id)}}">Edit Category</a>
+                    |
+                    <a href="{{url_for('deleteCategory', category_id = category.id)}}">Delete Category</a>
+                    {% endif %}
+                </p>
+                {% else %}
+                    <h3> There are no category entries.</h3>
+                {% endfor %}
+                {% if loggedIn %}
+                    <p>
+                        <a href="{{url_for('newCategory')}}">New Category</a>
+                    </p>
+                {% endif %}
+			</div>
+			<div class="item">
+                {% for item in items %}                   
+                    {% if loggedIn %}
+					    <p>
+                            <h3>{{item.name}}</h3><br>
+                            <a href="{{url_for('editItem', category_id = item.category_id, item_id = item.id)}}">Edit</a>
+                            |
+                            <a href="{{url_for('deleteItem', category_id = item.category_id, item_id = item.id)}}">Delete</a>
+                            <br>{{item.description}} <br>
+                        </p>
+                    {% else %}
+                        <p class = "itemText">
+                            <h3>{{item.name}}</h3><br>
+                            <br>{{item.description}} <br>
+                        </p>
+                    {% endif %}
+                {% else %}
+                    {% if category_id %}
+                        <h3>There are no entries in the database.</h3>
+                    {% else %}
+                        <h1>Latest Items</h1>
+                        {% for latestItem in latestItems %}
+                        <p>
+                            <a href="{{url_for('categoryItems', category_id=latestItem.category_id)}}">{{latestItem.name}}</a>
+                        </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                {% if loggedIn %}
+                    {% if category_id %}
+                    <p>
+                        <a href="{{url_for('newItem', category_id = category_id)}}">-->New Item<--</a>
+                    </p>
+                    {% endif %}
+                {% endif %} 
+			</div>
+        </div>
+    </div>
+    {% if loggedIn %}
+        <a class="loginbutton" href="{{url_for('gdisconnect')}}">Logout</a>
+    {% else %}
+        <a class="loginbutton" href="{{url_for('login')}}">Login</a>
+    {% endif %}
+    <div class="flash">	
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>  
+</body>
+</html>
+
+

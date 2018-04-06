@@ -1,0 +1,100 @@
+/*
+** HEADER
+*/
+
+h1{
+	font-size: 50px;
+	font-family: "Bradley Hand", cursive;
+	margin: 0;
+}
+
+.header{
+	border-bottom: 6px solid #7d97ad;
+	background-color: #8bb1b0;
+	border: 2px solid #73AD21;
+	border-radius: 25px;
+	border-style: solid;
+	color: #2d3c49;
+	display: flex;
+}
+
+.title{
+    display:inline-block;
+    padding:10px;
+    text-align:center;
+    width:100%;
+}
+
+/*
+** BODY
+*/
+a:link{
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+body{
+	background-color: #ffffff;
+	font-family: "Apple Chancery", cursive;
+}
+.container{
+	border: 1px lightgrey;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-bottom-style: solid;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.flash{
+	background-color: lightgrey;
+	bottom: 0px;	
+	font-size: 20px;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+}
+.grid-container{
+	display: grid;
+	grid-template-columns: 33% 66%;
+	grid-gap: 10px;
+/*	background-color: #2196F3; */
+	padding: 10px;
+}
+
+.grid-container > div{
+	border: 2px solid #73AD21;
+	border-radius: 25px;
+	border-style: solid;
+	text-align: center;
+	font-size: 14px;
+}
+/* FIX THIS */
+.grid-container > div:hover{
+	background-color: rgb(201, 243, 142);
+}
+
+.loginbutton{
+	position: fixed;
+	bottom: 3%;
+	right: 3%;
+}
+.menu{
+/*	border: 2px solid #73AD21;
+	border-radius: 25px;
+	border-style: solid;
+	display: inline-block;
+	height: 100%; */
+	float: left;
+}
+.item{
+/*	border: 2px solid #73AD21;
+	border-radius: 25px;
+	border-style: solid;
+	display: inline-block;
+	height: 100%; */
+	float: right;
+}
+.itemText{
+	font-size: 18px;
+}
